@@ -104,6 +104,17 @@ services:
     environment:
       - NAMESRV_ADDR=rmqnamesrv:9876
     command: sh mqproxy
+  # rocketmq-dashboard:
+  #   image: apacherocketmq/rocketmq-dashboard
+  #   environment:
+  #     - JAVA_OPTS=-Drocketmq.namesrv.addr=rmqnamesrv:9876
+  #   ports:
+  #     - 8082:8080
+  #   networks:
+  #     - rocketmq
+  #   depends_on:
+  #     - broker
+  #     - namesrv
 
 volumes:
   mysql8-4:
