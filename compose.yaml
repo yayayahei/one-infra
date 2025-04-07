@@ -38,6 +38,8 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9093
     depends_on:
       - kafka
+
+  # db
   mysql:
     image: mysql:8.4
     ports:
@@ -67,6 +69,14 @@ services:
       - zookeeper:zookeeper
     depends_on:
       - kafka
+  # db: in-memory
+  redis-stack:
+    image: redis/redis-stack:latest
+    ports:
+      - 6379:6379
+      - 8001:8001
+
+  # rocketmq
   namesrv:
     image: apache/rocketmq:5.3.1
     container_name: rmqnamesrv
@@ -115,12 +125,7 @@ services:
   #   depends_on:
   #     - broker
   #     - namesrv
-
-  redis-stack:
-    image: redis/redis-stack:latest
-    ports:
-      - 6379:6379
-      - 8001:8001
+  
 
 volumes:
   mysql8-4:
