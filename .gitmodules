@@ -3,4 +3,4 @@
 	url = git@github.com:yayayahei/docker-elk.git
 [submodule "docker-elk-test/go-filebeat-elastic"]
 	path = docker-elk-test/go-filebeat-elastic
-	url = https://github.com/alcbotta/go-filebeat-elastic
+	url = git@github.com:alcbotta/go-filebeat-elastic.git
