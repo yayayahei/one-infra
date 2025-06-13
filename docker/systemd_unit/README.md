@@ -17,6 +17,7 @@ systemctl enable --now containerd
 [containerd.service](containerd.service)
 
 
+
 ## prepare service unit file
 
 ### docker.service
@@ -33,6 +34,16 @@ systemctl enable --now containerd
 
 [docker.service](docker.service)
 
+### SELinux restriction (CentOS/RHEL)：
+```shell
+ls -Z /etc/systemd/system/docker.service
+
+sudo semanage fcontext -a -t systemd_unit_file_t '/etc/systemd/system/docker.service'
+sudo restorecon -v /etc/systemd/system/docker.service
+```
+
+### enable docker.service
+
 ```shell
 systemctl daemon-reload
 systemctl enable --now docker
@@ -43,3 +54,9 @@ systemctl enable --now docker
 > [systemd-analyze](https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html) can be used to analyze the systemd unit file.
 ### Q: Why ssh can not be connected when use github-docker.service?
 > A: The `docker.service` file contains firewalld.service, which will block the ssh connection.
+### Q: how to debug if docker.service is not found?
+> A: check log
+> ```shell
+> journalctl -u docker.service -b --no-pager
+> ```
+>
