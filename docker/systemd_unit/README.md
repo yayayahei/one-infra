@@ -37,6 +37,9 @@ systemctl enable --now containerd
 systemctl daemon-reload
 systemctl enable --now docker
 ```
-## reference
-- [systemd-analyze](https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html) can be used to analyze the systemd unit file.
-- 
+
+## FAQ
+### Q: How to check the syntax of service unit file?
+> [systemd-analyze](https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html) can be used to analyze the systemd unit file.
+### Q: Why ssh can not be connected when use github-docker.service?
+> A: The `docker.service` file contains firewalld.service, which will block the ssh connection.
