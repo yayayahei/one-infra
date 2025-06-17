@@ -7,6 +7,9 @@ services:
       - type: bind
         source: ./prometheus.yml
         target: /etc/prometheus/prometheus.yml
+      - type: bind
+        source: ./rules
+        target: /etc/prometheus/rules
       - type: volume
         source: prometheus-data
         target: /prometheus
@@ -32,6 +35,14 @@ services:
         target: /var/lib/grafana
     environment:
       GF_LOG_LEVEL: debug
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - type: bind
+        source: ./alertmanager.yml
+        target: /etc/alertmanager/alertmanager.yml
 volumes:
   prometheus-data:
   grafana-storage:

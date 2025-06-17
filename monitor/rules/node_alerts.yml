@@ -1,0 +1,11 @@
+groups:
+  - name: test-alert
+    rules:
+      - alert: 测试告警
+        expr: prometheus_target_interval_length_seconds{quantile="0.99"} > 4
+        for: 10s
+        labels:
+          severity: warning
+        annotations:
+          description: "prometheus_target_interval_length_seconds 测试"
+          summary: "测试告警"
