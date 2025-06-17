@@ -22,6 +22,17 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: volume
+        source: grafana-storage
+        target: /var/lib/grafana
+    environment:
+      GF_LOG_LEVEL: debug
 volumes:
   prometheus-data:
+  grafana-storage:
 
