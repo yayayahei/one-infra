@@ -45,6 +45,14 @@ services:
       - type: bind
         source: ./alertmanager.yml
         target: /etc/alertmanager/alertmanager.yml
+  blackbox-exporter:
+    image: prom/blackbox-exporter
+    ports:
+      - "9115:9115"
+    volumes:
+      - type: bind
+        source: ./blackbox.yml
+        target: /etc/blackbox.yml
 volumes:
   prometheus-data:
   grafana-storage:
